@@ -21,7 +21,7 @@ pipeline {
             steps {
                 dir('Tetris-V1') {
                     // Yahan 'sonar-scanner' wahi naam hai jo tune Manage Jenkins mein rakha hai
-                    withSonarQubeEnv('sonar-scanner') {
+                    withSonarQubeEnv('sonar-server') {
                         sh """ $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=TetrisV1-shreya \
                         -Dsonar.projectKey=TetrisV1-shreya """
                     }
