@@ -1,0 +1,8 @@
+vpc-name      = "shreya-VPC"
+igw-name      = "Jenkins-IGW"
+subnet-name   = "Shreya-Public-Subnet"
+rt-name       = "Shreya-RouteTable"
+sg-name       = "Shreya-DevOps-SG"
+instance-name = "Shreya-Jenkins-Server"
+key-name      = "shreya-devops-key"
+iam-role      = "shreya-admin"
