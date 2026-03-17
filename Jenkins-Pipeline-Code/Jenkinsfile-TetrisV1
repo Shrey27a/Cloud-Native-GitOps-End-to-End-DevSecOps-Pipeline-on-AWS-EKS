@@ -4,7 +4,7 @@ pipeline {
         nodejs 'nodejs'
     }
     environment  {
-        SCANNER_HOME=tool 'sonar-scanner'
+        SCANNER_HOME = tool 'sonar-scanner'
     }
     stages {
         stage('Cleaning Workspace') {
@@ -20,9 +20,10 @@ pipeline {
         stage('Sonarqube Analysis') {
             steps {
                 dir('Tetris-V1') {
+                    // Yahan 'sonar-scanner' wahi naam hai jo tune Manage Jenkins mein rakha hai
                     withSonarQubeEnv('sonar-scanner') {
-                        sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Tetris \
-                        -Dsonar.projectKey=Tetris '''
+                        sh """ $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=TetrisV1-shreya \
+                        -Dsonar.projectKey=TetrisV1-shreya """
                     }
                 }
             }
@@ -72,20 +73,16 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
-                        sh 'docker tag tetrisv1 avian19/tetrisv1:${BUILD_NUMBER}'
-                        sh 'docker push avian19/tetrisv1:${BUILD_NUMBER}'
+                        // UPDATE: Yahan tera username 'shreyaakannu' use kiya hai
+                        sh 'docker tag tetrisv1 shreyaakannu/tetrisv1:${BUILD_NUMBER}'
+                        sh 'docker push shreyaakannu/tetrisv1:${BUILD_NUMBER}'
                     }
                 }
             }
         }
         stage("TRIVY Image Scan") {
             steps {
-                sh 'trivy image avian19/tetrisv1:${BUILD_NUMBER} > trivyimage.txt'
-            }
-        }
-        stage('Checkout Code') {
-            steps {
-                git branch: 'master', url: 'https://github.com/Shrey27a/Cloud-Native-GitOps-End-to-End-DevSecOps-Pipeline-on-AWS-EKS.git'
+                sh 'trivy image shreyaakannu/tetrisv1:${BUILD_NUMBER} > trivyimage.txt'
             }
         }
         stage('Update Deployment file') {
@@ -100,13 +97,12 @@ pipeline {
                             git config user.email "sharmashreya65214@gmail.com"
                             git config user.name "Shrey27a"
                             BUILD_NUMBER=${BUILD_NUMBER}
-                            echo $BUILD_NUMBER
+                            # Branch change to main as per your notes
                             imageTag=$(grep -oP '(?<=tetrisv1:)[^ ]+' deployment-service.yml)
-                            echo $imageTag
                             sed -i "s/tetrisv1:${imageTag}/tetrisv1:${BUILD_NUMBER}/" deployment-service.yml
                             git add deployment-service.yml
-                            git commit -m "Update deployment Image to version \${BUILD_NUMBER}"
-                            git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
+                            git commit -m "Update deployment Image to version ${BUILD_NUMBER}"
+                            git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                         '''
                     }
                 }

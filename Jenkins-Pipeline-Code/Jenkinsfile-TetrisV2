@@ -4,25 +4,22 @@ pipeline {
         nodejs 'nodejs'
     }
     environment  {
-        SCANNER_HOME=tool 'sonar-scanner'
+        SCANNER_HOME = tool 'sonar-scanner'
     }
     stages {
         stage('Cleaning Workspace') {
-            steps {
-                cleanWs()
-            }
+            steps { cleanWs() }
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'master', url: 'https://github.com/AmanPathak-DevOps/End-to-End-Kubernetes-DevSecOps-Tetris-Project.git'
+                git branch: 'main', url: 'https://github.com/Shrey27a/Cloud-Native-GitOps-End-to-End-DevSecOps-Pipeline-on-AWS-EKS.git'
             }
         }
         stage('Sonarqube Analysis') {
             steps {
-                dir('Tetris-V2') {
-                    withSonarQubeEnv('sonar-server') {
-                        sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Tetris \
-                        -Dsonar.projectKey=Tetris '''
+                dir('Tetris-V2') { // Consistent with V2
+                    withSonarQubeEnv('sonar-scanner') {
+                        sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=TetrisV1-shreya -Dsonar.projectKey=TetrisV1-shreya"
                     }
                 }
             }
@@ -30,15 +27,13 @@ pipeline {
         stage('Quality Check') {
             steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
+                    waitForQualityGate abortPipeline: false, credentialsId: 'shreya-sonar-token'
                 }
             }
         }
         stage('Installing Dependencies') {
             steps {
-                dir('Tetris-V2') {
-                    sh 'npm install'
-                }
+                dir('Tetris-V2') { sh 'npm install' }
             }
         }
         stage('OWASP Dependency-Check Scan') {
@@ -51,9 +46,7 @@ pipeline {
         }
         stage('Trivy File Scan') {
             steps {
-                dir('Tetris-V2') {
-                    sh 'trivy fs . > trivyfs.txt'
-                }
+                dir('Tetris-V2') { sh 'trivy fs . > trivyfs.txt' }
             }
         }
         stage("Docker Image Build") {
@@ -72,41 +65,33 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
-                        sh 'docker tag tetrisv1 avian19/tetrisv1:${BUILD_NUMBER}'
-                        sh 'docker push avian19/tetrisv1:${BUILD_NUMBER}'
+                        sh 'docker tag tetrisv1 shreyaakannu/tetrisv1:${BUILD_NUMBER}'
+                        sh 'docker push shreyaakannu/tetrisv1:${BUILD_NUMBER}'
                     }
                 }
             }
         }
         stage("TRIVY Image Scan") {
             steps {
-                sh 'trivy image avian19/tetrisv1:${BUILD_NUMBER} > trivyimage.txt'
-            }
-        }
-        stage('Checkout Code') {
-            steps {
-                git branch: 'master', url: 'https://github.com/AmanPathak-DevOps/End-to-End-Kubernetes-DevSecOps-Tetris-Project.git'
+                sh 'trivy image shreyaakannu/tetrisv1:${BUILD_NUMBER} > trivyimage.txt'
             }
         }
         stage('Update Deployment file') {
             environment {
-                GIT_REPO_NAME = "End-to-End-Kubernetes-DevSecOps-Tetris-Project"
-                GIT_USER_NAME = "AmanPathak-DevOps"
+                GIT_REPO_NAME = "Cloud-Native-GitOps-End-to-End-DevSecOps-Pipeline-on-AWS-EKS"
+                GIT_USER_NAME = "Shrey27a"
             }
             steps {
                 dir('Manifest-file') {
                     withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                         sh '''
-                            git config user.email "aman07pathak@gmail.com"
-                            git config user.name "AmanPathak-DevOps"
-                            BUILD_NUMBER=${BUILD_NUMBER}
-                            echo $BUILD_NUMBER
+                            git config user.email "sharmashreya65214@gmail.com"
+                            git config user.name "Shrey27a"
                             imageTag=$(grep -oP '(?<=tetrisv1:)[^ ]+' deployment-service.yml)
-                            echo $imageTag
                             sed -i "s/tetrisv1:${imageTag}/tetrisv1:${BUILD_NUMBER}/" deployment-service.yml
                             git add deployment-service.yml
-                            git commit -m "Update deployment Image to version \${BUILD_NUMBER}"
-                            git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
+                            git commit -m "Update deployment Image to version ${BUILD_NUMBER}"
+                            git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                         '''
                     }
                 }
