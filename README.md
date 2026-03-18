@@ -1,60 +1,80 @@
 🚀 Cloud-Native GitOps: End-to-End DevSecOps Pipeline on AWS EKS
-This project demonstrates a sophisticated DevSecOps pipeline for a Cloud-Native Tetris application. It showcases the integration of security at every stage of the CI/CD lifecycle, using a GitOps approach with ArgoCD on a production-grade AWS EKS cluster.
 
+This project showcases a production-grade DevSecOps pipeline built for a cloud-native Tetris application. It demonstrates how security can be seamlessly integrated across every phase of the CI/CD lifecycle using a GitOps-driven approach with ArgoCD on AWS EKS.
+![Architecture](./assets/architecture.png)
 
-![Infrastructure Diagram](assets/Infra.gif)
-🏗️ Architecture
-The application is deployed using a modern, automated workflow:
+🏗️ Architecture Overview
 
-CI/CD Engine: Jenkins automates the build, test, and security scanning phases.
+A fully automated and scalable workflow designed with modern DevOps + DevSecOps practices:
 
-Security (DevSecOps): Integrated Trivy for image scanning, OWASP Dependency-Check for library analysis, and SonarQube for code quality.
+⚙️ CI/CD Engine: Jenkins orchestrates build, testing, and security validation.
 
-GitOps Delivery: ArgoCD ensures the EKS cluster state matches the GitHub manifest repository (Single Source of Truth).
+🔐 DevSecOps Layer:
 
-Cloud Infrastructure: Hosted on Amazon EKS with an Application Load Balancer (ALB) for high availability.
+Trivy → Container image vulnerability scanning
+
+OWASP Dependency-Check → Library vulnerability detection
+
+SonarQube → Code quality & static analysis
+
+🔄 GitOps Delivery: ArgoCD maintains cluster state as per Git (Single Source of Truth).
+
+☁️ Cloud Infrastructure: Deployed on AWS EKS with Application Load Balancer for high availability.
 
 ✨ Key Features
-🛡️ Continuous Security: Automated container and dependency scanning in the pipeline.
 
-💎 Code Quality: Static analysis via SonarQube to maintain clean and secure code.
+🛡️ Continuous Security
+Automated scanning for containers & dependencies at every pipeline stage.
 
-🔄 GitOps Workflow: Automated deployment triggered by manifest updates in GitHub.
+💎 Code Quality Assurance
+Static code analysis using SonarQube for maintainable and secure code.
 
-🎡 Container Orchestration: Scalable deployment on AWS EKS using managed Node Groups.
+🔄 GitOps Workflow
+Deployment triggered automatically via Git-based manifest updates.
 
-⚙️ Infrastructure as Code: Kubernetes manifests and services managed through Git versioning.
+🎡 Container Orchestration
+Scalable workloads managed through AWS EKS Node Groups.
+
+⚙️ Infrastructure as Code (IaC)
+Kubernetes manifests version-controlled via Git.
 
 📂 Project Structure
-Tetris-V2: Source code of the React-based Tetris application.
-
-Jenkinsfile: The pipeline script defining the automated workflow.
-
-deployment-service.yml: Kubernetes manifests for EKS deployment and service configuration.
-
+├── Tetris-V2/                 # React-based Tetris application
+├── Jenkinsfile               # CI/CD pipeline definition
+├── k8s/
+│   └── deployment-service.yml # Kubernetes deployment & service config
 🛠️ DevSecOps Pipeline Stages
-1. Continuous Integration (Jenkins)
-Checkout: Pulling the latest code from GitHub.
+1️⃣ Continuous Integration (CI - Jenkins)
 
-Static Analysis: Code quality check using SonarQube.
+📥 Checkout: Pull latest code from GitHub
 
-Dependency Scan: Identifying vulnerable libraries with OWASP Dependency-Check.
+🔍 Static Analysis: SonarQube code quality checks
 
-2. Containerization & Security
-Docker Build: Creating a lightweight production image.
+🧪 Dependency Scan: OWASP Dependency-Check for vulnerabilities
 
-Image Scanning: Trivy scan to ensure zero critical vulnerabilities in the Docker image.
+2️⃣ Containerization & Security
 
-Registry Push: Securely pushing the image to Docker Hub.
+🐳 Docker Build: Lightweight production-ready image
 
-3. Continuous Delivery (GitOps & ArgoCD)
-Manifest Update: Pipeline automatically updates the image tag in the Git repository.
+🔐 Image Scan: Trivy ensures zero critical vulnerabilities
 
-ArgoCD Sync: ArgoCD detects changes and synchronizes the cluster state with the repo.
+📦 Registry Push: Secure image push to Docker Hub
 
-EKS Deployment: Application goes live on AWS EKS behind a Load Balancer.
+3️⃣ Continuous Delivery (CD - GitOps + ArgoCD)
+
+📝 Manifest Update: Auto-update image tag in Git repo
+
+🔄 ArgoCD Sync: Detects changes & syncs cluster state
+
+🚀 EKS Deployment: App deployed behind Load Balancer
+
+📸 Architecture Diagram
+
+(Add your pipeline image here for better visualization)
+
 
 🤝 Connect with Me
-LinkedIn: Shreya Sharma
 
-GitHub: Shrey27a
+💼 LinkedIn: https://www.linkedin.com/in/shreya-sharma-a514092a2/
+
+💻 GitHub: https://github.com/Shrey27a
