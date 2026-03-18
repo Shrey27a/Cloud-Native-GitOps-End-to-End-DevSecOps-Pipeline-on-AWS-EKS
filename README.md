@@ -9,6 +9,8 @@ This project demonstrates a **production-grade DevSecOps pipeline** for a cloud-
 The application is deployed using a modern and automated workflow:
 
 * **CI/CD Engine:** Jenkins automates build, test, and security validation.
+<img width="624" height="274" alt="image" src="https://github.com/user-attachments/assets/6f132be6-8127-4424-a4a2-f8bbfeb28fa2" />
+
 * **DevSecOps Layer:**
 
   * Trivy → Container image vulnerability scanning
@@ -62,6 +64,8 @@ The application is deployed using a modern and automated workflow:
 * Deploy application on AWS EKS
 
 ---
+
+
 
 ## Deployment
 
