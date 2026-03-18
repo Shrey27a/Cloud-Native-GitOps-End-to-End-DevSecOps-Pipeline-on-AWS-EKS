@@ -1,4 +1,4 @@
-** Cloud-Native GitOps: End-to-End DevSecOps Pipeline on AWS EKS**
+**Cloud-Native GitOps: End-to-End DevSecOps Pipeline on AWS EKS**
 
 This project showcases a production-grade DevSecOps pipeline built for a cloud-native Tetris application. It demonstrates how security can be seamlessly integrated across every phase of the CI/CD lifecycle using a GitOps-driven approach with ArgoCD on AWS EKS.
 ![Architecture](./assets/architecture.png)
