@@ -11,25 +11,34 @@ The application is deployed using a modern and automated workflow:
 
 * **CI/CD Engine:** Jenkins automates build, test, and security validation.
 
-<img width="624" height="274" alt="image" src="https://github.com/user-attachments/assets/6f132be6-8127-4424-a4a2-f8bbfeb28fa2" />
+## CI Pipeline (Jenkins)
+
+ <img width="624" height="274" alt="image" src="https://github.com/user-attachments/assets/6f132be6-8127-4424-a4a2-f8bbfeb28fa2" />
 
 * **DevSecOps Layer:**
 
   * Trivy → Container image vulnerability scanning
   * OWASP Dependency-Check → Library vulnerability detection
   * SonarQube → Code quality & static analysis
+ 
+  ## Code Quality (SonarQube)
     
-    <img width="1555" height="718" alt="image" src="https://github.com/user-attachments/assets/89ce2770-9405-49e6-b939-c137641f584d" />
+   <img width="1039" height="542" alt="image" src="https://github.com/user-attachments/assets/776e46f9-534e-4745-ad3e-fd0ff9125d12" />
+
 
 * **GitOps Delivery:** ArgoCD ensures cluster state matches GitHub (Single Source of Truth).
   
 
-  <img width="1915" height="663" alt="image" src="https://github.com/user-attachments/assets/800b39c5-b6f6-4875-88e7-229ba91f9a34" />
+ ## Docker Registry
+ 
+ <img width="1528" height="505" alt="image" src="https://github.com/user-attachments/assets/dfb57bff-4bea-426d-ac44-a4a0a9fc9d30" />
 
 
 
+  ## GitOps Deployment (ArgoCD)
 
-  <img width="1705" height="640" alt="image" src="https://github.com/user-attachments/assets/639ebde7-bbe4-49c1-9fa1-4866471d1123" />
+  
+  <img width="1675" height="674" alt="image" src="https://github.com/user-attachments/assets/fbac2329-9e5c-4aa2-be67-18f0efc70af1" />
 
 
   
