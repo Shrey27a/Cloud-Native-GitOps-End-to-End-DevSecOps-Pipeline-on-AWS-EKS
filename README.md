@@ -7,13 +7,16 @@ This project demonstrates a **production-grade DevSecOps pipeline** for a cloud-
 
 ## Architecture
 
+![Infrastructure Diagram](assets/Infra.gif)
+
 The application is deployed using a modern and automated workflow:
 
 * **CI/CD Engine:** Jenkins automates build, test, and security validation.
 
 ## CI Pipeline (Jenkins)
 
- <img width="624" height="274" alt="image" src="https://github.com/user-attachments/assets/6f132be6-8127-4424-a4a2-f8bbfeb28fa2" />
+ <img width="1559" height="511" alt="image" src="https://github.com/user-attachments/assets/c3320ee8-ad23-463f-b8b7-e3b51bdb0127" />
+
 
 * **DevSecOps Layer:**
 
@@ -47,9 +50,12 @@ The application is deployed using a modern and automated workflow:
 
 
 
+
   <img width="1575" height="283" alt="image" src="https://github.com/user-attachments/assets/4bef1959-be53-47ca-9b0d-9bca7ca51dd9" />
 
 
+
+## 🎮 Final Application
 
 
 
