@@ -16,6 +16,8 @@ The application is deployed using a modern and automated workflow:
   * Trivy → Container image vulnerability scanning
   * OWASP Dependency-Check → Library vulnerability detection
   * SonarQube → Code quality & static analysis
+    <img width="1555" height="718" alt="image" src="https://github.com/user-attachments/assets/89ce2770-9405-49e6-b939-c137641f584d" />
+
 * **GitOps Delivery:** ArgoCD ensures cluster state matches GitHub (Single Source of Truth).
 * **Cloud Infrastructure:** Hosted on AWS EKS with Application Load Balancer (ALB) for high availability.
 
