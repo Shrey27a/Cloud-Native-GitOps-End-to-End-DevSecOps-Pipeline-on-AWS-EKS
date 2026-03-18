@@ -1,4 +1,5 @@
-# 🚀 End-to-End DevSecOps Kubernetes Project 🌐
+Cloud-Native GitOps: End-to-End DevSecOps Pipeline on AWS EKS
+This project demonstrates a sophisticated DevSecOps pipeline for a Cloud-Native Tetris application. It showcases the integration of security at every stage of the CI/CD lifecycle, using a GitOps approach with ArgoCD on a production-grade AWS EKS cluster.
 
 [![LinkedIn](https://img.shields.io/badge/Connect%20with%20me%20on-LinkedIn-blue.svg)](https://www.linkedin.com/in/aman-devops/)
 [![GitHub](https://img.shields.io/github/stars/AmanPathak-DevOps.svg?style=social)](https://github.com/AmanPathak-DevOps)
