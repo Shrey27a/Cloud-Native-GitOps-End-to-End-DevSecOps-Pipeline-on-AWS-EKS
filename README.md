@@ -1,10 +1,10 @@
-# 🚀 Cloud-Native GitOps: End-to-End DevSecOps Pipeline on AWS EKS
+# Cloud-Native GitOps: End-to-End DevSecOps Pipeline on AWS EKS
 
 This project demonstrates a **production-grade DevSecOps pipeline** for a cloud-native Tetris application. It highlights how security is integrated across every phase of the CI/CD lifecycle using a **GitOps-driven approach** with ArgoCD on AWS EKS.
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 The application is deployed using a modern and automated workflow:
 
@@ -19,7 +19,7 @@ The application is deployed using a modern and automated workflow:
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 * **Continuous Security:** Automated scanning for containers and dependencies in every pipeline stage.
 * **Code Quality:** Static analysis using SonarQube to maintain clean and secure code.
@@ -29,7 +29,7 @@ The application is deployed using a modern and automated workflow:
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 * **Tetris-V2:** React-based Tetris application source code
 * **Jenkinsfile:** CI/CD pipeline definition
@@ -37,7 +37,7 @@ The application is deployed using a modern and automated workflow:
 
 ---
 
-## 🛠️ DevSecOps Pipeline
+## DevSecOps Pipeline
 
 ### 1. Continuous Integration (CI - Jenkins)
 
@@ -63,7 +63,7 @@ The application is deployed using a modern and automated workflow:
 
 ---
 
-## 🌐 Deployment
+## Deployment
 
 The application is deployed on **AWS EKS** and exposed via a Load Balancer, ensuring high availability and scalability.
 
